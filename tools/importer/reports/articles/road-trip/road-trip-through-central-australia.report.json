@@ -1,0 +1,13 @@
+{
+  "status": "success",
+  "url": "https://www.racq.com.au/articles/road-trip/road-trip-through-central-australia",
+  "path": "articles/road-trip/road-trip-through-central-australia",
+  "timestamp": "2026-08-27T05:44:14.306Z",
+  "title": "Road trip through Central Australia | RACQ",
+  "template": "road-trip",
+  "blocks": [
+    "hero-newsletter",
+    "cards-article-list",
+    "cards-related"
+  ]
+}

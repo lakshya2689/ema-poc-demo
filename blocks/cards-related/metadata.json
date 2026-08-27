@@ -1,0 +1,38 @@
+{
+  "variantName": "cards-related",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-08-27T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.racq.com.au/articles/road-trip/road-trip-through-central-australia",
+    "originPage": "road trip article detail page",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "related-articles",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image + category badge + title + description",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "'Related topics' / related articles grids",
+      "article/blog card grids with image, category and description",
+      "content discovery sections at the end of articles"
+    ],
+    "notSuitableFor": [
+      "compact link lists without descriptions",
+      "product feature grids requiring CTA buttons"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/articles/road-trip/road-trip-through-central-australia"],
+    "reuseCount": 1,
+    "lastUsed": "2026-08-27T00:00:00.000Z"
+  }
+}
