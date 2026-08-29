@@ -5,9 +5,15 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 30px;
+}
+
+@media (width >= 900px) {
+  .cards-related ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 /* card container */
@@ -30,7 +36,7 @@
 .cards-related .cards-related-card-image img {
   display: block;
   width: 100%;
-  aspect-ratio: 688 / 245;
+  aspect-ratio: 428 / 245;
   object-fit: cover;
 }
 
