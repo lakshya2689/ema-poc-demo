@@ -1,0 +1,38 @@
+{
+  "variantName": "hero-newsletter",
+  "baseBlock": "hero",
+  "version": "1.0.0",
+  "created": "2026-08-27T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.racq.com.au/articles/road-trip/road-trip-through-central-australia",
+    "originPage": "road trip article detail page",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "newsletter-promo",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image + heading + CTA",
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "sidebar newsletter/subscribe promotions",
+      "compact image + headline + single CTA promo boxes",
+      "in-article call-to-action panels"
+    ],
+    "notSuitableFor": [
+      "full-width page hero banners",
+      "heroes with multiple CTAs or long body copy"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/articles/road-trip/road-trip-through-central-australia"],
+    "reuseCount": 1,
+    "lastUsed": "2026-08-27T00:00:00.000Z"
+  }
+}

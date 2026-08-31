@@ -1,0 +1,58 @@
+{
+  "metadata": {
+    "projectType": "xwalk"
+  },
+  "templates": [
+    {
+      "name": "road-trip",
+      "urls": [
+        "https://www.racq.com.au/articles/road-trip/road-trip-through-central-australia"
+      ],
+      "representativeUrl": "https://www.racq.com.au/articles/road-trip/road-trip-through-central-australia",
+      "urlPattern": "/articles/road-trip/*",
+      "description": "Road trip article page: long-form article body with lead image, inline captioned images, byline/CTA, tags, social sharing, a sidebar newsletter promo and 'More articles' list, a 'Related topics' card grid, and a pale-blue disclaimer section.",
+      "blocks": [
+        {
+          "name": "hero-newsletter",
+          "instances": [
+            ".article-detail__ad-banners"
+          ]
+        },
+        {
+          "name": "cards-article-list",
+          "instances": [
+            ".article-listing-compact"
+          ]
+        },
+        {
+          "name": "cards-related",
+          "instances": [
+            ".article-listing:not(.article-listing-compact)"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "rc1",
+          "name": "Article body",
+          "selector": "#content > div.row > div.component.container",
+          "style": null,
+          "blocks": [
+            "hero-newsletter",
+            "cards-article-list",
+            "cards-related"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc2",
+          "name": "Things to note disclaimer",
+          "selector": "#content > div.row > div.component.container-fluid.col-12.fluid-container--pale-blue",
+          "style": "pale-blue",
+          "blocks": [],
+          "defaultContent": []
+        }
+      ]
+    }
+  ]
+}

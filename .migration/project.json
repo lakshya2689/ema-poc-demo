@@ -1,9 +1,17 @@
 {
+  "type": "xwalk",
+  "pluginRoot": "/home/node/.excat-marketplaces/excat-marketplace/excat",
   "sites": {
     "ema-poc-demo": {
+      "libraryUrl": "https://main--sta-xwalk-boilerplate--aemysites.aem.page/tools/sidekick/library.json",
       "previewOrg": "lakshya2689",
       "previewSite": "ema-poc-demo",
-      "contentHostUrl": "author-p8661-e624335.adobeaemcloud.com"
+      "contentHostUrl": "author-p25321-e1006616.adobeaemcloud.com",
+      "aemSitePath": "/content/ema-poc-demo",
+      "aemAssetsFolderPath": "/content/dam/ema-poc-demo",
+      "aemSiteName": "ema-poc-demo",
+      "aemSiteTitle": "ema-poc-demo",
+      "baseUrl": "https://author-p25321-e1006616.adobeaemcloud.com/ui#/aem/sites.html/content/ema-poc-demo"
     }
   }
 }

@@ -19,6 +19,18 @@
     ]
   },
   {
+    "id": "cards-article-list",
+    "components": [
+      "card"
+    ]
+  },
+  {
+    "id": "cards-related",
+    "components": [
+      "card"
+    ]
+  },
+  {
     "id": "cards",
     "components": [
       "card"
