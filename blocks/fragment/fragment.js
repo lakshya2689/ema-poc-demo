@@ -22,7 +22,13 @@ export async function loadFragment(path) {
   if (path && path.startsWith('/') && !path.startsWith('//')) {
     // eslint-disable-next-line no-param-reassign
     path = path.replace(/(\.plain)?\.html/, '');
-    const resp = await fetch(`${path}.plain.html`);
+    // Fetch the fragment. Locally (aem up) content is served under /content;
+    // on DA/EDS it is served from the site root. Try the plain path first,
+    // then fall back to the /content-prefixed path so both resolve.
+    let resp = await fetch(`${path}.plain.html`);
+    if (!resp.ok && !path.startsWith('/content')) {
+      resp = await fetch(`/content${path}.plain.html`);
+    }
     if (resp.ok) {
       const main = document.createElement('main');
       main.innerHTML = await resp.text();
