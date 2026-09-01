@@ -153,11 +153,14 @@ export default {
     WebImporter.rules.transformBackgroundImages(main, document);
     WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
 
-    // 6. Generate sanitized path
+    // 6. Generate sanitized path. Group all article pages under
+    //    /articles/road-trip/ regardless of their source section, so this
+    //    template's imports land in the road-trip folder.
     const rawPath = new URL(params.originalURL).pathname
       .replace(/\/$/, '')
       .replace(/\.html?$/, '');
-    const path = WebImporter.FileUtils.sanitizePath(rawPath === '' ? '/index' : rawPath);
+    const remappedPath = rawPath.replace(/^\/articles\/[^/]+\//, '/articles/road-trip/');
+    const path = WebImporter.FileUtils.sanitizePath(remappedPath === '' ? '/index' : remappedPath);
 
     return [{
       element: main,
