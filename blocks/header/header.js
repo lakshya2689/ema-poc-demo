@@ -127,6 +127,29 @@ export default async function decorate(block) {
   nav.id = 'nav';
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
+  // ensure the RACQ logo renders. The logo lives in the repo /icons folder
+  // (deployed with the code); the authored relative `images/...` src 404s on
+  // delivery and can be dropped during fragment decoration, so point any
+  // existing racq-logo img at the fixed path, and if the brand link lost its
+  // image, inject it.
+  const logoSrc = `${window.hlx?.codeBasePath || ''}/icons/racq-logo.svg`;
+  const setLogo = (img) => {
+    img.src = logoSrc;
+    img.closest('picture')?.querySelectorAll('source').forEach((s) => s.remove());
+  };
+  const existingLogo = nav.querySelector('img[src*="racq-logo"]');
+  if (existingLogo) {
+    setLogo(existingLogo);
+  } else {
+    const brandLink = nav.querySelector('a[href="/"]:not(:has(img))') || nav.querySelector('a[href="/"]');
+    if (brandLink && !brandLink.querySelector('img')) {
+      const img = document.createElement('img');
+      img.alt = 'RACQ';
+      setLogo(img);
+      brandLink.append(img);
+    }
+  }
+
   const classes = ['brand', 'sections', 'tools'];
   classes.forEach((c, i) => {
     const section = nav.children[i];
