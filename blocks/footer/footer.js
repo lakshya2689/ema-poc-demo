@@ -1,4 +1,4 @@
-import { getMetadata } from '../../scripts/aem.js';
+import { getMetadata, decorateIcons } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 /**
@@ -19,5 +19,29 @@ export default async function decorate(block) {
   const footer = document.createElement('div');
   while (fragment.firstElementChild) footer.append(fragment.firstElementChild);
 
+  // convert :icon-name: tokens in link text into icon spans that
+  // decorateIcons() turns into <img>/<svg> (fragments skip this decoration)
+  footer.querySelectorAll('a').forEach((a) => {
+    const match = a.textContent.trim().match(/^:([a-z0-9-]+):$/i);
+    if (match) {
+      const span = document.createElement('span');
+      span.className = `icon icon-${match[1]}`;
+      a.setAttribute('aria-label', match[1]);
+      a.textContent = '';
+      a.append(span);
+    }
+  });
+
+  // tag the social links row (a list whose links point to social networks)
+  // so it can be styled as a horizontal icon row
+  const SOCIAL = /facebook|twitter|x\.com|youtube|instagram|linkedin/i;
+  footer.querySelectorAll('ul').forEach((ul) => {
+    const links = [...ul.querySelectorAll('a')];
+    if (links.length && links.every((a) => SOCIAL.test(a.href))) {
+      ul.classList.add('footer-social');
+    }
+  });
+
+  decorateIcons(footer);
   block.append(footer);
 }

@@ -13,6 +13,40 @@ footer .footer p {
   margin: 0;
 }
 
+/* social icon row */
+footer .footer ul.footer-social {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+}
+
+footer .footer ul.footer-social li {
+  margin: 0;
+}
+
+footer .footer ul.footer-social a {
+  display: inline-flex;
+  color: var(--text-color);
+}
+
+footer .footer ul.footer-social a:hover {
+  color: var(--link-color);
+}
+
+footer .footer ul.footer-social .icon {
+  width: 24px;
+  height: 24px;
+}
+
+footer .footer ul.footer-social .icon img,
+footer .footer ul.footer-social .icon svg {
+  width: 100%;
+  height: 100%;
+}
+
 @media (width >= 900px) {
   footer .footer > div {
     padding: 40px 32px 24px;
