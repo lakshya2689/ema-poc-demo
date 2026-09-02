@@ -6,10 +6,13 @@ import { loadFragment } from '../fragment/fragment.js';
  * @param {Element} block The footer block element
  */
 export default async function decorate(block) {
-  // load footer as fragment
+  // load footer as fragment. Prefer the page's `footer` metadata, then the
+  // site root `/footer`, then fall back to the authored location under the
+  // article tree so the footer renders regardless of where the doc lives.
   const footerMeta = getMetadata('footer');
   const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
-  const fragment = await loadFragment(footerPath);
+  const fragment = await loadFragment(footerPath)
+    || await loadFragment('/articles/road-trip/footer');
 
   // decorate footer DOM
   block.textContent = '';

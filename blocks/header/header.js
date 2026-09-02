@@ -113,10 +113,13 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  // load nav as fragment
+  // load nav as fragment. Prefer the page's `nav` metadata, then the site
+  // root `/nav`, then fall back to the authored location under the article
+  // tree so the header renders regardless of where the nav doc lives.
   const navMeta = getMetadata('nav');
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
-  const fragment = await loadFragment(navPath);
+  const fragment = await loadFragment(navPath)
+    || await loadFragment('/articles/road-trip/nav');
 
   // decorate nav DOM
   block.textContent = '';
