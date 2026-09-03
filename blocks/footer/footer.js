@@ -55,8 +55,39 @@ export default async function decorate(block) {
     }
   });
 
-  // tag the social links row (a list whose links point to social networks)
-  // so it can be styled as a horizontal icon row
+  // known destinations for the social networks
+  const SOCIAL_URLS = {
+    facebook: 'https://www.facebook.com/racqofficial/',
+    twitter: 'https://twitter.com/RACQOfficial',
+    youtube: 'https://www.youtube.com/user/RACQOfficial',
+    instagram: 'https://www.instagram.com/racqofficial/',
+    linkedin: 'https://au.linkedin.com/company/racq',
+  };
+
+  // collect any social icon spans (icon-facebook, icon-twitter, ...) — whether
+  // authored as linked tokens or as bare spans that ended up loose in the
+  // content — and gather them into a single linked social row.
+  const socialSpans = [...footer.querySelectorAll('span.icon')]
+    .filter((span) => [...span.classList].some((c) => SOCIAL_URLS[c.replace('icon-', '')]));
+  if (socialSpans.length) {
+    const socialList = document.createElement('ul');
+    socialList.className = 'footer-social';
+    socialSpans.forEach((span) => {
+      const name = [...span.classList].map((c) => c.replace('icon-', '')).find((n) => SOCIAL_URLS[n]);
+      const li = document.createElement('li');
+      const a = span.closest('a') || document.createElement('a');
+      if (!a.getAttribute('href')) a.href = SOCIAL_URLS[name];
+      a.setAttribute('aria-label', name);
+      if (!span.closest('a')) a.append(span);
+      li.append(a);
+      socialList.append(li);
+    });
+    // place the social row at the end of the first footer section
+    (footer.querySelector('.default-content-wrapper') || footer.firstElementChild || footer)
+      .append(socialList);
+  }
+
+  // also tag any list whose links all point to social networks
   const SOCIAL = /facebook|twitter|x\.com|youtube|instagram|linkedin/i;
   footer.querySelectorAll('ul').forEach((ul) => {
     const links = [...ul.querySelectorAll('a')];
